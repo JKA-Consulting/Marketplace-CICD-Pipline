@@ -10,7 +10,8 @@ steps:
 
   - id: 'tf plan'
     name: 'hashicorp/terraform:1.0.0'
-    depends on: tf plan
+    waitFor: 
+    - "tf plan"
     entrypoint: 'sh'
     args:
       - "-c"
@@ -21,7 +22,8 @@ steps:
   # Require Manual Approval
   - id: 'gcloud approval'
     name: 'gcr.io/cloud-builders/gcloud'
-    depends on: tf plan
+    waitFor: 
+    - "tf plan"
     entrypoint: 'sh'
     args:
       - "-c"
