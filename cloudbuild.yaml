@@ -11,7 +11,7 @@ steps:
   - id: 'tf plan'
     name: 'hashicorp/terraform:1.0.0'
     waitFor: 
-    - "tf plan"
+    - 'tf init'
     entrypoint: 'sh'
     args:
       - "-c"
@@ -23,7 +23,7 @@ steps:
   - id: 'gcloud approval'
     name: 'gcr.io/cloud-builders/gcloud'
     waitFor: 
-    - "tf plan"
+    - 'tf plan'
     entrypoint: 'sh'
     args:
       - "-c"
@@ -37,7 +37,7 @@ steps:
   - id: 'tf apply'
     name: 'hashicorp/terraform:1.0.0'
     waitFor:
-      - "gcloud approval"
+      - 'gcloud approval'
     entrypoint: 'sh'
     args:
       - "-c"
