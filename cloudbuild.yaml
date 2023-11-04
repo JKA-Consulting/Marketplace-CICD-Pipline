@@ -1,6 +1,6 @@
 steps:
   - id: 'tf-init'
-    name: 'hashicorp/terraform:1.0.0'
+    name: 'hashicorp/terraform:latest'
     entrypoint: 'sh'
     args: 
     - '-c'
@@ -9,7 +9,7 @@ steps:
   - timeout: "600s"
 
   - id: 'tf-plan'
-    name: 'hashicorp/terraform:1.0.0'
+    name: 'hashicorp/terraform:latest'
     waitFor: 
     - 'tf-init'
     entrypoint: 'sh'
@@ -35,7 +35,7 @@ steps:
 
 
   - id: 'tf-apply'
-    name: 'hashicorp/terraform:1.0.0'
+    name: 'hashicorp/terraform:latest'
     waitFor:
       - 'gcloud-approval'
     entrypoint: 'sh'
