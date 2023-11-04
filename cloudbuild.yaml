@@ -1,5 +1,5 @@
 steps:
-  - id: 'tf init'
+  - id: 'tf-init'
     name: 'hashicorp/terraform:1.0.0'
     entrypoint: 'sh'
     args: 
@@ -8,10 +8,10 @@ steps:
         terraform init 
   - timeout: "600s"
 
-  - id: 'tf plan'
+  - id: 'tf-plan'
     name: 'hashicorp/terraform:1.0.0'
     waitFor: 
-    - 'tf init'
+    - 'tf-init'
     entrypoint: 'sh'
     args:
       - "-c"
@@ -20,10 +20,10 @@ steps:
   - timeout: "600s"
 
   # Require Manual Approval
-  - id: 'gcloud approval'
+  - id: 'gcloud-approval'
     name: 'gcr.io/cloud-builders/gcloud'
     waitFor: 
-    - 'tf plan'
+    - 'tf-plan'
     entrypoint: 'sh'
     args:
       - "-c"
@@ -34,10 +34,10 @@ steps:
   - timeout: "600s"
 
 
-  - id: 'tf apply'
+  - id: 'tf-apply'
     name: 'hashicorp/terraform:1.0.0'
     waitFor:
-      - 'gcloud approval'
+      - 'gcloud-approval'
     entrypoint: 'sh'
     args:
       - "-c"
