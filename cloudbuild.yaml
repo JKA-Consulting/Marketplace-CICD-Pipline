@@ -6,7 +6,7 @@ steps:
     - '-c'
     - | 
         terraform init 
-  - timeout: "600s"
+  # - timeout: "600s"
 
   - id: 'tf-plan'
     name: 'hashicorp/terraform:latest'
@@ -17,7 +17,7 @@ steps:
       - "-c"
       - |
           terraform plan
-  - timeout: "600s"
+  # - timeout: "600s"
 
   # Require Manual Approval
   - id: 'gcloud-approval'
@@ -31,7 +31,7 @@ steps:
         # Notify a user or group about the Terraform changes and request approval.
         # Replace 'user@example.com' with the email of the approver.
         gcloud builds submit --config=cloudbuild-manual-approval.yaml --no-source --substitutions=_APPROVER_EMAIL=aiffone@gmail.com
-  - timeout: "600s"
+  # - timeout: "600s"
 
 
   - id: 'tf-apply'
@@ -43,7 +43,7 @@ steps:
       - "-c"
       - |
           terraform apply -auto-approve
-  - timeout: "600s"
+  # - timeout: "600s"
 
 
 options:
