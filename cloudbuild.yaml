@@ -4,6 +4,8 @@ steps:
     entrypoint: 'sh'
     args: 
     - '-c'
+    - 'pwd'
+    - 'ls -la'
     - | 
         terraform init 
   # - timeout: "600s"
