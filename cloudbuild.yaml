@@ -32,7 +32,7 @@ steps:
       - |
         # Notify a user or group about the Terraform changes and request approval.
         # Replace 'user@example.com' with the email of the approver.
-        gcloud builds submit --config=cloudbuild-manual-approval.yaml --no-source --substitutions=_APPROVER_EMAIL=aiffone@gmail.com
+        gcloud builds submit --config=cloudbuild-manual-approval.yaml --no-source --substitutions=_APPROVER_EMAIL="aiffone@gmail.com"
   # - timeout: "600s"
 
 
