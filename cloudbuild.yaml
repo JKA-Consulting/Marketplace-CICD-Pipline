@@ -21,25 +21,10 @@ steps:
           terraform plan
   # - timeout: "600s"
 
-  # Require Manual Approval
-  - id: 'gcloud-approval'
-    name: 'gcr.io/cloud-builders/gcloud'
-    waitFor: 
-    - 'tf-plan'
-    entrypoint: 'sh'
-    args:
-      - "-c"
-      - |
-        # Notify a user or group about the Terraform changes and request approval.
-        # Replace 'user@example.com' with the email of the approver.
-        # gcloud builds submit --config=cloudbuild-manual-approval.yaml --no-source --substitutions=_APPROVER_EMAIL="aiffone@gmail.com"
-  # - timeout: "600s"
-
+ 
 
   - id: 'tf-apply'
     name: 'hashicorp/terraform:latest'
-    waitFor:
-      - 'gcloud-approval'
     entrypoint: 'sh'
     args:
       - "-c"
