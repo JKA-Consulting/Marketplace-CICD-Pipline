@@ -5,7 +5,7 @@ variable "instance_type" {
   }
 variable "instance_network" {}
 resource "google_compute_instance" "vm_instance" {
-  project = "kayprjct03-353511"
+  project = "playground-s-11-2ab6fb0a"
   name         = "${var.instance_name}"
   zone         = "${var.instance_zone}"
   machine_type = "${var.instance_type}"
