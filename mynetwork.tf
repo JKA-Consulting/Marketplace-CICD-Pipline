@@ -1,7 +1,7 @@
 # Create the mynetwork network
 resource "google_compute_network" "mynetwork" {
   name    = "mynetwork"
-  project = "playground-s-11-2ab6fb0a 	"
+  project = "playground-s-11-1cfe966f"
   #RESOURCE properties go here
   auto_create_subnetworks = "true"
 }
@@ -9,7 +9,7 @@ resource "google_compute_network" "mynetwork" {
 # Add a firewall rule to allow HTTP, SSH, RDP, and ICMP traffic on mynetwork
 resource "google_compute_firewall" "mynetwork-allow-http-ssh-rdp-icmp" {
   name    = "mynetwork-allow-http-ssh-rdp-icmp"
-  project = "playground-s-11-2ab6fb0a 	"
+  project = "playground-s-11-1cfe966f"
   network = google_compute_network.mynetwork.self_link
   allow {
     protocol = "tcp"
