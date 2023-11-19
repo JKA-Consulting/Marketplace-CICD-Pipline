@@ -1,7 +1,7 @@
-project = "playground-s-11-2ab6fb0a"
+project = "playground-s-11-1cfe966f"
 
-project_id = "playground-s-11-2ab6fb0a"
+project_id = "playground-s-11-1cfe966f"
 
 region = "europe-west1"
 
-project_number = "652946628802"
+project_number = "617238607111"
