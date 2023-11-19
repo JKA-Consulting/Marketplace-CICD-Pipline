@@ -20,6 +20,7 @@ resource "google_compute_instance" "Compute_Instance_1" {
     subnetwork = "subnet-1"
     
   }
+}
 
 resource "google_compute_firewall" "allow-ssh-rdp-icmp" {
   name    = "allow-ssh-rdp-icmp"
@@ -35,3 +36,4 @@ resource "google_compute_firewall" "allow-ssh-rdp-icmp" {
   }
 
   source_ranges = ["0.0.0.0/0"] #allowing incoming traffic from the specified network address, in this case all addresses are allowed
+}
