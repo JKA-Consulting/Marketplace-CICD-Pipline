@@ -21,7 +21,7 @@ resource "google_compute_instance" "Compute_Instance_1" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-9"
+      image = "debian-cloud/debian-11"
       size  = 20 # Boot disk size in GB
     }
   }
