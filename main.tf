@@ -14,8 +14,8 @@ resource "google_compute_subnetwork" "subnet-1" {
   ip_cidr_range = "10.0.1.0/24"  # Replace with your desired IP range
 }
 
-resource "google_compute_instance" "Compute_Instance_1" {
-  name         = "Compute_Instance_1"
+resource "google_compute_instance" "instance-1" {
+  name         = "instance-1"
   machine_type = "e2-micro"
   zone         = "europe-west1-d"
 
