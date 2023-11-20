@@ -3,6 +3,17 @@ provider "google" {
   region  = "europe-west1"
 }
 
+resource "google_compute_network" "mynetwork" {
+  name                    = "mynetwork"
+  auto_create_subnetworks = false
+}
+
+resource "google_compute_subnetwork" "subnet-1" {
+  name          = "subnet-1"
+  network       = google_compute_network.mynetwork.self_link
+  ip_cidr_range = "10.0.1.0/24"  # Replace with your desired IP range
+}
+
 resource "google_compute_instance" "Compute_Instance_1" {
   name         = "Compute_Instance_1"
   machine_type = "e2-micro"
@@ -16,15 +27,15 @@ resource "google_compute_instance" "Compute_Instance_1" {
   }
 
   network_interface {
-    network = "mynetwork" 
-    subnetwork = "subnet-1"
+    network = google_compute_network.mynetwork.name
+    subnetwork = google_compute_subnetwork.subnet-1.name
     
   }
 }
 
 resource "google_compute_firewall" "allow-ssh-rdp-icmp" {
   name    = "allow-ssh-rdp-icmp"
-  network = "mynetwork" 
+  network = google_compute_network.mynetwork.name 
 
   allow {
     protocol = "tcp"
