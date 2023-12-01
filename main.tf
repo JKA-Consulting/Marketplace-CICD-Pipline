@@ -1,6 +1,6 @@
 provider "google" {
   project = "themarketplacedev"
-  region  = "europe-west1"
+  region  = "europe-west2"
 }
 
 resource "google_compute_network" "marketplace-vpc" {
@@ -17,7 +17,7 @@ resource "google_compute_subnetwork" "subnet-2" {
 resource "google_compute_instance" "webmail-instance" {
   name         = "webmail-instance"
   machine_type = "e2-micro"
-  zone         = "europe-west1-d"
+  zone         = "europe-west2-d"
 
   boot_disk {
     initialize_params {
