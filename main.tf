@@ -1,21 +1,21 @@
 provider "google" {
-  project = "playground-s-11-1cfe966f"
+  project = "themarketplacedev"
   region  = "europe-west1"
 }
 
-resource "google_compute_network" "mynetwork" {
-  name                    = "mynetwork"
+resource "google_compute_network" "marketplace-vpc" {
+  name                    = "marketplace-vpc"
   auto_create_subnetworks = false
 }
 
-resource "google_compute_subnetwork" "subnet-1" {
-  name          = "subnet-1"
-  network       = google_compute_network.mynetwork.self_link
-  ip_cidr_range = "10.0.1.0/24"  # Replace with your desired IP range
+resource "google_compute_subnetwork" "subnet-2" {
+  name          = "subnet-2"
+  network       = google_compute_network.marketplace-vpc.self_link
+  ip_cidr_range = "10.20.2.0/24"  # Replace with your desired IP range
 }
 
-resource "google_compute_instance" "instance-1" {
-  name         = "instance-1"
+resource "google_compute_instance" "webmail-instance" {
+  name         = "webmail-instance"
   machine_type = "e2-micro"
   zone         = "europe-west1-d"
 
@@ -27,15 +27,15 @@ resource "google_compute_instance" "instance-1" {
   }
 
   network_interface {
-    network = google_compute_network.mynetwork.name
-    subnetwork = google_compute_subnetwork.subnet-1.name
+    network = google_compute_network.marketplace-vpc.name
+    subnetwork = google_compute_subnetwork.subnet-2.name
     
   }
 }
 
 resource "google_compute_firewall" "allow-ssh-rdp-icmp" {
   name    = "allow-ssh-rdp-icmp"
-  network = google_compute_network.mynetwork.name 
+  network = google_compute_network.marketplace-vpc.name 
 
   allow {
     protocol = "tcp"
