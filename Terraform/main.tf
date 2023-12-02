@@ -1,5 +1,5 @@
 resource "google_compute_instance" "instance-1" {
-  name         = "instance-1"
+  name         = "cicd-instance"
   machine_type = "e2-micro"
   zone         = "europe-west1-d"
 
@@ -18,7 +18,7 @@ resource "google_compute_instance" "instance-1" {
 }
 
 resource "google_compute_firewall" "allow-ssh-rdp-icmp" {
-  name    = "allow-ssh-rdp-icmp"
+  name    = "cicd-allow-ssh-rdp-icmp"
   network = google_compute_network.mynetwork.name 
 
   allow {

@@ -1,4 +1,4 @@
 provider "google" {
-  project = "playground-s-11-1cfe966f"
+  project = "themarketplacedev"
   region  = "europe-west1"
 }
