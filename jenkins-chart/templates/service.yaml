@@ -1,0 +1,23 @@
+# jenkins-chart/templates/service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-master
+  labels:
+    app: {{ template "jenkins-chart.name" . }}
+    chart: {{ template "jenkins-chart.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.master.serviceType }}
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
+    - port: 50000
+      targetPort: 50000
+      name: jnlp
+  selector:
+    app: {{ template "jenkins-chart.name" . }}
+    release: {{ .Release.Name }}
