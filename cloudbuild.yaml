@@ -46,7 +46,16 @@ steps:
       - |
           terraform apply -auto-approve
   # - timeout: "600s"
-
+  #deploy jenkins
+  - name: 'gcr.io/cloud-builders/helm'
+    args:
+      - 'upgrade'
+      - '--install'
+      - 'jenkins'
+      - './jenkins-chart'
+    env:
+      - 'CLOUDSDK_COMPUTE_REGION=your-region'
+      - 'CLOUDSDK_CORE_PROJECT=your-project-id'
 
 options:
   logging: CLOUD_LOGGING_ONLY
