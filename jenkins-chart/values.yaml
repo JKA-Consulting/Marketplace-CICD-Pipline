@@ -1,0 +1,8 @@
+# jenkins-chart/values.yaml
+
+master:
+  name: jenkins-master
+  image: "jenkins/jenkins:lts"
+  adminUser: admin
+  adminPassword: admin
+  serviceType: LoadBalancer
