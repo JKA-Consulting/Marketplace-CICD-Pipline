@@ -1,0 +1,31 @@
+# jenkins-chart/templates/deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-master
+  labels:
+    app: {{ template "jenkins-chart.name" . }}
+    chart: {{ template "jenkins-chart.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "jenkins-chart.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "jenkins-chart.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Values.master.name }}
+          image: "{{ .Values.master.image }}"
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: jnlp
+              containerPort: 50000
