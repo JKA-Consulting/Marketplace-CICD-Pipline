@@ -1,23 +1,7 @@
-provider "google" {
-  project = "themarketplacedev"
-  region  = "europe-west1"
-}
-
-resource "google_compute_network" "marketplace-vpc" {
-  name                    = "marketplace-vpc"
-  auto_create_subnetworks = false
-}
-
-resource "google_compute_subnetwork" "subnet-2" {
-  name          = "subnet-2"
-  network       = google_compute_network.marketplace-vpc.self_link
-  ip_cidr_range = "10.20.2.0/24"  # Replace with your desired IP range
-}
-
 resource "google_compute_instance" "webmail-instance" {
   name         = "webmail-instance"
   machine_type = "e2-micro"
-  zone         = "europe-west1-d"
+  zone         = var.subnet-region.id
 
   boot_disk {
     initialize_params {
@@ -28,7 +12,7 @@ resource "google_compute_instance" "webmail-instance" {
 
   network_interface {
     network = google_compute_network.marketplace-vpc.name
-    subnetwork = google_compute_subnetwork.subnet-2.name
+    subnetwork = google_compute_subnetwork.marketplace-subnet1.name
     
   }
 }
