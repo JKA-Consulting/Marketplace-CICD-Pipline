@@ -1,7 +1,7 @@
 resource "google_compute_instance" "webmail-instance" {
   name         = "webmail-instance"
   machine_type = "e2-micro"
-  zone         = var.subnet-region.id
+  zone         = var.subnet-zone.id
 
   boot_disk {
     initialize_params {
