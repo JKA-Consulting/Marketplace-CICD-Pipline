@@ -11,5 +11,9 @@ variable "subnet-cidr" {
 }
 
 variable "subnet-region" {
+  default = "europe-west2"
+}
+
+variable "subnet-zone" {
   default = "europe-west2-a"
 }
