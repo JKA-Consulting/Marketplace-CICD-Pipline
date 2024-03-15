@@ -1,5 +1,5 @@
 variable "region" {
-  default = "europe-west2"
+  default = "europe-west"
 }
 
 variable "project-id" {
@@ -11,9 +11,9 @@ variable "subnet-cidr" {
 }
 
 variable "subnet-region" {
-  default = "europe-west2"
+  default = "europe-west1"
 }
 
 variable "subnet-zone" {
-  default = "europe-west2-a"
+  default = "europe-west1-a"
 }
