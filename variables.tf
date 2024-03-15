@@ -15,5 +15,5 @@ variable "subnet-region" {
 }
 
 variable "subnet-zone" {
-  default = "europe-west1-a"
+  default = "europe-west1-b"
 }
