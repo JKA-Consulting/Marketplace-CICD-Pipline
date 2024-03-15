@@ -1,19 +1,25 @@
 variable "region" {
-  default = "europe-west1"
+  description = "default project region"
 }
 
 variable "project-id" {
-  default = "marketplacedev-416018"
+  description = "project id"
 }
 
 variable "subnet-cidr" {
-  default = "10.1.0.0/16"
+  description = "project cidr block"
 }
 
 variable "subnet-region" {
-  default = "europe-west1"
+  description = "subnet region of the vpc"
 }
 
 variable "subnet-zone" {
-  default = "europe-west1-b"
+  description = "subnet zone of the vpc"
+}
+
+variable "gcp_service_list" {
+  type = list(string)
+  description = "the list of APIs to be enabled for this project"
+  default = []
 }
