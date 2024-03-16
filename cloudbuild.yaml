@@ -29,7 +29,7 @@ steps:
     args:
       - "-c"
       - |
-          terraform apply --auto-approve PLAN
+          terraform apply --auto-approve 
   # - timeout: "600s"
 
 
