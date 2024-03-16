@@ -11,15 +11,15 @@ resource "google_compute_instance" "webmail-instance" {
   }
 
   network_interface {
-    network = google_compute_network.marketplace-vpc.name
+    network    = google_compute_network.marketplace-vpc.name
     subnetwork = google_compute_subnetwork.marketplace-subnet1.name
-    
+
   }
 }
 
 resource "google_compute_firewall" "allow-ssh-rdp-icmp" {
   name    = "allow-ssh-rdp-icmp"
-  network = google_compute_network.marketplace-vpc.name 
+  network = google_compute_network.marketplace-vpc.name
 
   allow {
     protocol = "tcp"
@@ -27,7 +27,7 @@ resource "google_compute_firewall" "allow-ssh-rdp-icmp" {
   }
 
   allow {
-    protocol = "icmp"  #allowing pings
+    protocol = "icmp" #allowing pings
   }
 
   source_ranges = ["0.0.0.0/0"] #allowing incoming traffic from the specified network address, in this case all addresses are allowed
