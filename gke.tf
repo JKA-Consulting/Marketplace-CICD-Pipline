@@ -6,7 +6,7 @@ data "google_container_engine_versions" "gke_version" {
 
 resource "google_container_cluster" "marketplace-cluster" {
   name                     = "${var.project-id}-gke"
-  location                 = var.region
+  location                 = var.subnet-zone
   remove_default_node_pool = true
   initial_node_count       = 1
   network                  = google_compute_network.marketplace-vpc.name
@@ -16,10 +16,10 @@ resource "google_container_cluster" "marketplace-cluster" {
 # Separately Managed Node Pool
 resource "google_container_node_pool" "marketplace-cluster-nodes" {
   name       = google_container_cluster.marketplace-cluster.name
-  location   = var.region
+  location   = var.subnet-zone
   cluster    = google_container_cluster.marketplace-cluster.name
   version    = data.google_container_engine_versions.gke_version.release_channel_latest_version["STABLE"]
-  node_count = 2
+  node_count = 1
 
   node_config {
     oauth_scopes = [
