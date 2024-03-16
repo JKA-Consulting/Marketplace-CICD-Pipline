@@ -3,9 +3,9 @@ locals {
 }
 
 resource "google_project_service" "enabled_apis" {
-  service = each.key
-  project = var.project-id
-  for_each = toset(local.all_project_services)
+  service                    = each.key
+  project                    = var.project-id
+  for_each                   = toset(local.all_project_services)
   disable_dependent_services = true
-  disable_on_destroy = true
+  disable_on_destroy         = true
 }

@@ -19,7 +19,7 @@ variable "subnet-zone" {
 }
 
 variable "gcp_service_list" {
-  type = list(string)
+  type        = list(string)
   description = "the list of APIs to be enabled for this project"
-  default = []
+  default     = []
 }
