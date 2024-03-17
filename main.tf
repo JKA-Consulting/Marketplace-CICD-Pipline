@@ -1,11 +1,11 @@
-resource "google_compute_instance" "webmail-instance" {
-  name         = "webmail-instance"
-  machine_type = "e2-micro"
+resource "google_compute_instance" "jenkins-instance" {
+  name         = "jenkins-instance"
+  machine_type = "e2-medium"
   zone         = var.subnet-zone
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = "Ubuntu 20.04 LTS"
       size  = 20 # Boot disk size in GB
     }
   }
@@ -15,6 +15,8 @@ resource "google_compute_instance" "webmail-instance" {
     subnetwork = google_compute_subnetwork.marketplace-subnet1.name
 
   }
+
+  metadata_startup_script = "${file("/jenkinsScript.sh")}"
 }
 
 resource "google_compute_firewall" "allow-ssh-rdp-icmp" {
@@ -23,7 +25,7 @@ resource "google_compute_firewall" "allow-ssh-rdp-icmp" {
 
   allow {
     protocol = "tcp"
-    ports    = ["22", "3389", "80"] #allowing ssh, rdp and http
+    ports    = ["22", "3389", "80", "8080"] #allowing ssh, rdp and http
   }
 
   allow {
