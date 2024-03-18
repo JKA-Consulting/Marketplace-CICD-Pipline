@@ -5,7 +5,7 @@ resource "google_compute_instance" "jenkins-instance" {
 
   boot_disk {
     initialize_params {
-      image = "Ubuntu 20.04 LTS"
+      image = "ubuntu-pro-fips-2004-focal-v20240229"
       size  = 20 # Boot disk size in GB
     }
   }
