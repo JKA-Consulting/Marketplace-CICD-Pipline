@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    environment {
+        PROJECT_ID = 
+        TF_STATE_BUCKET_NAME = 
+    }
+    stages{
+        stage('terraform init') {
+            steps{
+                script{
+                    sh "terraform init -backend-config="bucket=$TF_STATE_BUCKET_NAME" -backend-config="prefix=terraform/state""
+                }
+            }
+        }
+        stage('terraform apply') {
+            steps{
+                script{
+                    sh "terraform plan --auto-approve -var="project-id=$PROJECT_ID""
+                }
+            }
+        }
+        stage('terraform action') {
+            steps{
+                script{
+                    echo "Terraform action is -> ${action}"
+                    sh "terraform ${action} --auto-approve"
+                }
+            }
+        }
+    }
+}
