@@ -8,7 +8,7 @@ pipeline {
         stage('terraform init and apply') {
             steps {
                 script {
-                    withCredentials([file(credentialsId: 'google-auth', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                    withCredentials([file(credentialsId: 'google-auth-file', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                         sh """
                         export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
                         terraform init -backend-config="bucket=${TF_STATE_BUCKET_NAME}" -backend-config="prefix=terraform/state"
