@@ -19,15 +19,15 @@ pipeline {
         stage('terraform action') {
             input {
                 message "select action"
-                OK "Done"
+                ok "Done"
                 parameters{
-                    choice(name: 'ACTION', choices: ['output', 'destroy'], descrition: 'to choose the next choice of action')
+                    choice(name: 'ACTION', choices: ['output', 'destroy'], description: 'to choose the next choice of action')
                 }
             }
             steps {
                 script {
-                    echo "Terraform action is -> ${action}"
-                    sh "terraform ${action} --auto-approve"
+                    echo "Terraform action is -> ${params.ACTION}"
+                    sh "terraform ${params.ACTION} --auto-approve"
                 }
             }
         }
