@@ -10,8 +10,8 @@ pipeline {
                 script {
                     withCredentials([file(credentialsId: 'google-auth-file', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                         sh 'export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}'
-                        sh "terraform init -backend-config="bucket=${TF_STATE_BUCKET_NAME}" -backend-config="prefix=terraform/state""
-                        sh "terraform apply --auto-approve -var="project-id=${PROJECT_ID}""
+                        sh 'terraform init -backend-config="bucket=${TF_STATE_BUCKET_NAME}" -backend-config="prefix=terraform/state"'
+                        sh 'terraform apply --auto-approve -var="project-id=${PROJECT_ID}"'
                     }
                 }
             }
