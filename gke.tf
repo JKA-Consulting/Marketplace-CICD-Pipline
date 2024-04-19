@@ -11,6 +11,9 @@ resource "google_container_cluster" "marketplace-cluster" {
   initial_node_count       = 1
   network                  = google_compute_network.marketplace-vpc.name
   subnetwork               = google_compute_subnetwork.marketplace-subnet1.name
+  release_channel {
+      channel = "REGULAR"
+    }
 }
 
 # Separately Managed Node Pool
