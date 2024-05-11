@@ -22,7 +22,7 @@ resource "google_container_node_pool" "marketplace-cluster-nodes" {
   location   = var.subnet-zone
   cluster    = google_container_cluster.marketplace-cluster.name
   version    = data.google_container_engine_versions.gke_version.release_channel_latest_version["STABLE"]
-  node_count = 1
+  node_count = 2
 
   node_config {
     oauth_scopes = [
@@ -35,7 +35,7 @@ resource "google_container_node_pool" "marketplace-cluster-nodes" {
     }
 
     # preemptible  = true
-    machine_type = "n1-standard-1"
+    machine_type = "n2-standard-2"
     tags         = ["gke-node", "${var.project-id}-gke"]
     metadata = {
       disable-legacy-endpoints = "true"
