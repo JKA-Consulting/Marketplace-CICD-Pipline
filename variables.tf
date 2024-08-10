@@ -17,9 +17,3 @@ variable "subnet-region" {
 variable "subnet-zone" {
   description = "subnet zone of the vpc"
 }
-
-variable "gcp_service_list" {
-  type        = list(string)
-  description = "the list of APIs to be enabled for this project"
-  default     = []
-}

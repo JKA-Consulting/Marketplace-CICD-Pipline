@@ -1,6 +1,6 @@
 resource "google_compute_instance" "jenkins-instance" {
   name         = "jenkins-instance"
-  machine_type = "n2-highcpu-2"      #"e2-medium"
+  machine_type = "e2-medium"      
   zone         = var.subnet-zone
 
   boot_disk {
